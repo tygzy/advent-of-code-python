@@ -1,25 +1,17 @@
-data = open('data.in', 'r').read().splitlines()
+c, x, s, crt = [], 1, 0, ''
 
-c, x, s = [], 1, 0
-crt = ""
-
-for line in data:
+for line in open('data.in', 'r').read().splitlines():
     c.append(x)
     if line.split()[0] == 'addx':
         c.append(x)
         x += int(line.split()[1])
 
 for i in [20, 60, 100, 140, 180, 220]:
-    s += i*c[i-1]
+    s += i * c[i - 1]
 
 for cycle in range(len(c)):
-    cur_x = c[cycle]
-    if cur_x <= (cycle%40)+1 <= cur_x+2:
-        crt += '#'
-    else:
-        crt += '.'
-    if cycle+1 in [40, 80, 120, 160, 200, 240]:
+    crt += '#' if c[cycle] <= (cycle % 40) + 1 <= c[cycle] + 2 else '.'
+    if cycle + 1 in [40, 80, 120, 160, 200, 240]:
         crt += '\n'
 
-print(crt)
-print(s)
+print(crt, s)
